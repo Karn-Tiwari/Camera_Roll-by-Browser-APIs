@@ -9,5 +9,6 @@ let constraints = {
 // userMedia -> mediadevices k ander ki ek functionality hai jisme wo user se access mangega
 
 navigator.mediaDevices.getUserMedia(constraints).then((stream) =>{
-
+video.
 })
+
