@@ -88,3 +88,7 @@ left:5rem;
 color:aquamarine;
 font-size:0.8rem;
 }
+
+.timer{
+    display: none;
+}

@@ -16,7 +16,8 @@ let constraints = {
 // mediaDevices -> iska use hum hardware jaise camera aur microphone ko connect karne k liye karte hai
 // userMedia -> mediadevices k ander ki ek functionality hai jisme wo user se access mangega
 
-navigator.mediaDevices.getUserMedia(constraints).then((stream) =>{
+navigator.mediaDevices.getUserMedia(constraints)
+.then((stream) =>{
     video.srcObject = stream;
     recorder = new MediaRecorder(stream);
     recorder.addEventListener("start",(e)=>{
@@ -43,7 +44,9 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) =>{
 
 recordBtnCont.addEventListener('click', (e) => {
     if(!recorder)return;
+
     recordFlag = !recordFlag;
+
     if(recordFlag){
         recorder.start();
         recordBtn.classList.add("scale-record")
@@ -60,28 +63,33 @@ let timerID;
 let counter = 0;// Represents total seconds
 let timer = document.querySelector(".timer");
 function startTimer(){
+    timer.style.display = "block";
     function displayTimer(){
         let totalSeconds = counter;
-        let hour = Number.parseInt(totalSeconds/3600)
+        let hours = Number.parseInt(totalSeconds/3600)
         totalSeconds = totalSeconds % 3600;// remaining value
 
-        let minute = Number.parseInt(totalSeconds/60);
+        let minutes = Number.parseInt(totalSeconds/60);
         totalSeconds = totalSeconds % 60;
+        
+        let seconds = totalSeconds;  
+
         hours = (hours<10) ? `0${hours}` : hours;
         minutes = (minutes<10) ? `0${minutes}` : minutes;
         seconds = (seconds<10) ? `0${seconds}` : seconds;
-    
+     
 
-        let seconds = totalSeconds;
-        timer.innerText = `${hour}:${minute}:${seconds}`;
+        timer.innerText = `${hours}:${minutes}:${seconds}`;
     
         counter++;
     }
     timerID = setInterval(displayTimer,1000)
 }
 function stopTimer(){
+    
     clearInterval(timerID)
     timer.innerText = "00:00:00";
+    timer.style.display = "none";
 }
 
 startTimer();
