@@ -47,10 +47,12 @@ recordBtnCont.addEventListener('click', (e) => {
     if(recordFlag){
         recorder.start();
         recordBtn.classList.add("scale-record")
+        startTimer();//call kardo timer start karne ke liye
     }
     else{
         recorder.stop();
         recordBtn.classList.remove("scale-record");
+        stopTimer();// call kardo timer stop karne ke liye
     }
 })
 
